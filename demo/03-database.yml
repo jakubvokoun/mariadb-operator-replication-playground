@@ -1,0 +1,31 @@
+apiVersion: k8s.mariadb.com/v1alpha1
+kind: Database
+metadata:
+  name: demo
+spec:
+  mariaDbRef:
+    name: demo-mariadb
+---
+apiVersion: k8s.mariadb.com/v1alpha1
+kind: User
+metadata:
+  name: demo
+spec:
+  mariaDbRef:
+    name: demo-mariadb
+  passwordSecretKeyRef:
+    name: mariadb-secrets
+    key: MARIADB_PASSWORD
+  maxUserConnections: 0
+---
+apiVersion: k8s.mariadb.com/v1alpha1
+kind: Grant
+metadata:
+  name: demo
+spec:
+  mariaDbRef:
+    name: demo-mariadb
+  privileges:
+  - ALL PRIVILEGES
+  database: demo
+  username: demo
