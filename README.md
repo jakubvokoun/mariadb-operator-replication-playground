@@ -23,4 +23,12 @@ minikube start
 make install-operator
 make install-demo
 make check-demo
+make check-demo-databases
 ```
+
+## Basic replication demo
+
+```sh
+make add-testing-table
+make check-replication
+````
